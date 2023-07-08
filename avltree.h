@@ -12,15 +12,15 @@ typedef struct node {
 typedef struct desc_avl{
 
     struct node * root;
-    int leght;
+    int height;
 
 }desc_avl;
 
 
-node * createNodo();
+node * createNode(int key);
 desc_avl * createAVL();
-node * removeAvl(desc_avl * favl, int key);
-desc_avl * insertAvl(desc_avl * favl, int key);
+node * removeAvl(node * root, int key);
+node * insertAvl(node * root, int key);
 node * simpleLeftRotation(node * fnode);
 node * simpleRightRotation(node * fnode);
 node * doubleLeftRotation(node * fnode);
@@ -28,4 +28,4 @@ node * doubleRightRotation(node * fnode);
 void printNode(node * fnode);
 void preOrdePrintTree(node * root);
 void inOrderPrintTree(node * root);
-void preOrdePrintTree(node * root);
+void postOrdePrintTree(node * root);

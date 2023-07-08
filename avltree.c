@@ -7,11 +7,11 @@
 
 
 
-node * createNodo(){//create a new empty nodo
+node * createNode(int key){//create a new empty nodo
     node * newNode = (node *) malloc (sizeof(node));
 
     newNode->father = NULL;
-    newNode->key;
+    newNode->key = key;
     newNode->right = NULL;
     newNode->left =  NULL;
     newNode->factor = 0;
@@ -24,25 +24,30 @@ desc_avl * createAVL(){//create a new empty tree
     desc_avl * newTree = (desc_avl *) malloc (sizeof(desc_avl));
 
     newTree->root = NULL;
-    newTree->leght = 0;
+    newTree->height = 0;
 
     return newTree;
 }
 
-node * removeAvl(desc_avl * favl, int key){//remove and return one node
-
-    node * aux = NULL;
-
-
-
-    return aux;
+node * removeAvl(node * root, int key){//remove and return one node
+//    return aux;
 }
-desc_avl * insertAvl(desc_avl * favl, int key){//insert one node and updade the tree
-    
+node * insertAvl(node * root, int key){//insert one node and updade the tree
+    // If the tree is empty, create a new node and set it as the root
+    if (root == NULL) {
+        return createNode(key);
+    }
 
+    // Otherwise, recur down the tree
+    if (key < root->key) {
+        root->left = insertAvl(root->left, key);
+    } else if (key > root->key) {
+        root->right = insertAvl(root->right, key);
+    }
 
-    return favl;
+    return root;
 }
+
 
 node * simpleLeftRotation(node * fnode){
     node * ptu;
@@ -103,6 +108,24 @@ node * doubleRightRotation(node * fnode){
     return fnode;
 }
 void printNode(node * fnode){}
-void preOrdePrintTree(node * root){}
-void inOrderPrintTree(node * root){}
-void preOrdePrintTree(node * root){}
+void preOrdePrintTree(node * root){
+    if (root != NULL) {
+        printf("[%d] ", root->key);
+        preOrdePrintTree(root->left);
+        preOrdePrintTree(root->right);
+    }
+}
+void inOrderPrintTree(node * root){
+    if (root != NULL) {
+        inOrderPrintTree(root->left);
+        printf("[%d] ", root->key);
+        inOrderPrintTree(root->right);
+    }
+}
+void postOrdePrintTree(node * root){
+    if (root != NULL) {
+        postOrdePrintTree(root->left);
+        postOrdePrintTree(root->right);
+        printf("[%d] ", root->key);
+    }
+}
