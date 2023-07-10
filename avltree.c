@@ -16,6 +16,7 @@ node * createNode(int key){//create a new empty nodo
     newNode->left =  NULL;
     newNode->factor = 0;
     newNode->balance;
+    newNode->height = 0;
 
     return newNode;
 }
@@ -28,17 +29,33 @@ desc_avl * createAVL(){//create a new empty tree
 
     return newTree;
 }
+//funcao para pegar altura do nodo
+//vai servir para as rotações
+int getHeight(node * node) {
+    if (node == NULL) {
+        return 0;
+    }
+    return node->height;
+}
+
+//calcular o fator debalanço.
+int getBalanceFactor(node * node) {
+    if (node == NULL) {
+        return 0;
+    }
+    return getHeight(node->left) - getHeight(node->right);
+}
 
 node * removeAvl(node * root, int key){//remove and return one node
 //    return aux;
 }
 node * insertAvl(node * root, int key){//insert one node and updade the tree
-    // If the tree is empty, create a new node and set it as the root
+    //se a arvore estiver vazia
     if (root == NULL) {
         return createNode(key);
     }
 
-    // Otherwise, recur down the tree
+    //caso tenha algum nó na arvore
     if (key < root->key) {
         root->left = insertAvl(root->left, key);
     } else if (key > root->key) {
