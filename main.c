@@ -18,6 +18,7 @@ int main(){
         printf("[1] - Criar arvore.\n");
         printf("[2] - Inserir no na arvore.\n");
         printf("[3] - Imprimir arvore.\n");
+        printf("[4] - Remover nó da arvore.\n");
         printf("[6] - Sair.\n");
         //setbuf(stdin(NULL));
         scanf("%d", &menu);
@@ -42,6 +43,13 @@ int main(){
             printf("\n POST ORDER: \n");
             postOrdePrintTree(AVLtree->root);
           
+            break;
+        case 4:
+            //implementar remocao da arvore
+            printf("Digite o valor que gostaria de remover.\n");
+            //setbuf(sdtin(NULL));
+            scanf("%d", &key);
+            removeNode(AVLtree->root, key);
             break;
         default:
             break;
